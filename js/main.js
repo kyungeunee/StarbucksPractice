@@ -62,3 +62,38 @@ new Swiper('.notice-line .swiper-container', {
   autoplay: true, //자동 재생
   loop: true //슬라이드 전체 반복 재생 여부
 });
+
+new Swiper('.promotion .swiper-container', {
+  //direction: 'horizontal',  ** swiper의 기본 옵션은 horizontal이라 따로 명시할 필요 없음.
+  slidesPerView: 3, //한번에 보여줄 슬라이드 개수 
+  spaceBetween: 10, //슬라이드 사이 여백
+  centeredSlides: true, //1번 슬라이드가 가운데 보이기
+  loop: true, //반복 재생
+  autoplay:{  //자동 재생. 안에 중괄호 넣으면 배열 형식으로 옵션을 넣어줄 수 있다. 
+    delay: 5000 //ms단위
+  },  //
+  pagination: { //화살표 만드는 부분.
+    el: '.promotion .swiper-pagination', //페이지 번호 요소 선택자
+    clickable: true //사용자가 페이지 번호 요소 제어 가능
+  }, 
+  navigation: {
+    prevEl: '.promotion .swiper-prev',
+    nextEl: '.promotion .swiper-next'
+  }
+});
+
+//Promotion 숨기기 기능 만들것. 
+const promotionEl = document.querySelector('.promotion');
+const promotionToggleBtn = document.querySelector('.toggle-promotion');
+let isHidePromotion = false; // 프로모션 부분 숨겨져 있니~? 기본적으로는 잘 보이니 false
+promotionToggleBtn.addEventListener('click', function(){
+  isHidePromotion = !isHidePromotion //false이니 true로 만들어주렴. true면 false가 될것.
+  if(isHidePromotion){
+    //true면 숨김처리!
+    promotionEl.classList.add('hide'); //promotion 클래스 리스트에 hide가 추가가 되는것
+    //css에서 promotion .hide 클래스를 안보이게 처리해주면 됨. 
+  }else{
+    //false면 보임처리
+    promotionEl.classList.remove('hide');
+  }
+});

@@ -408,3 +408,98 @@ header .badges .badge{
 .notice .notice-line .inner__right .material-icons{
   font-size: 30px;
 }
+
+.notice .promotion{
+  height: 693px;
+  background-color: #f6f5ef;
+  position: relative;
+  transition: height .4s;
+  overflow: hidden; /*요소의 크기가 줄어들면서 내용이 넘치지 않도록 함. */
+}
+
+.notice .promotion.hide{
+  /* .hide에 띄어쓰기 안됨. 일치선택자를 통해서 프로모션 요소에 hide 클래스가 붙어있게 만들어야함.  */
+  height: 0;
+  /* hide 클래스가 실현이 되면 높이값이 0 이 되어 블록요소 없어짐. 내용들은 상위클래스에서 overflow: hidden으로 제어 */
+}
+
+.notice .promotion .swiper-container{
+  /* 슬라이드 : 가운데 이미지만 표시가 잘 되어있고, 다른 두 이미지들은 반투명 처리가 되어있음. */
+  width: calc(819px * 3 + 20px); /*css에서 계산해주는 함수. 100% -50px이런식으로도 사용가능*/
+  height: 553px;
+  position: absolute;
+  top: 40px;
+  left: 50%; /*요소를 화면기준 왼쪽에서 50% 만큼 밀어주고*/
+  margin-left: calc((819px * 3 + 20px)/ -2); /*다시 요소의 절반 만큼을 땡겨와 중앙에 맞춰줌. */
+}
+.notice .promotion .swiper-slide{
+  opacity: .5;
+  transition: opacity 1s;
+  position: relative;
+}
+.notice .promotion .swiper-slide-active{
+  opacity: 1;
+}
+.notice .promotion .swiper-slide .btn{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; /*가운데 정렬*/
+}
+.notice .promotion .swiper-pagination{
+  /* swiper pagination에는 이미 자바스크립트 라이브러리가 제공하는 기본 스타일이 있음.  */
+  /* 기본적으로 position: absolute, text- align: center, 기본적으로 인라인 요소 */
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet{
+/* swiper에서 제공하는 항목. 개발자 도구로 분석해서 찾아낸 값이야ㅠㅠ 어렵구망.... */
+  background-color: transparent;
+  background-image: url("../images/promotion_slide_pager.png");
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  outline: none;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet:last-child{
+/* pagination의 bullet들 중 가장 마지막 요소 즉, 가장 마지막 친구는 우측 여백 빼줌. */
+  margin-right: 0;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet-active{
+  background-image: url("../images/promotion_slide_pager_on.png");
+}
+.notice .promotion .swiper-prev,
+.notice .promotion .swiper-next{
+/* 다중 선택자. 두 클래스에 모두 적용되는 스타일이 된다. */
+  width: 42px;
+  height: 42px;
+  border: 2px solid #333;
+  border-radius: 50%; /* 완전 동그라미 */
+  position: absolute;
+  top: 300px;
+  z-index: 1;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center; /*수평 가운데*/
+  align-items: center; /* 수직 가운데 */
+  transition: .4s; /*전환효솨*/
+}
+/* 위와 다른 부분을 명시 */
+.notice .promotion .swiper-prev {
+  left: 50%;
+  margin-left: -480px;
+}
+.notice .promotion .swiper-next {
+  right: 50%;
+  margin-right: -480px;
+}
+.notice .promotion .swiper-prev:hover,
+.notice .promotion .swiper-next:hover{
+  /* 해당 아이콘에 커서를 올리면 변화하는 부분 */
+  background-color: #333;
+  color: #fff;
+}
+
